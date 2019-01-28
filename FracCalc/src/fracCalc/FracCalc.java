@@ -17,44 +17,54 @@ public class FracCalc {
     		}
     	}	
     	userInput.close();	
-    }
-    
+    }  
 
     public static String produceAnswer(String input) { 
     	String[] inputArr = input.split(" ");
+    	ArrayList<String> inputList = new ArrayList<String>(Arrays.asList(inputArr));
+
+    	boolean paren = true;
+    	while (paren) {
+    		int openParenIndex = inputList.lastIndexOf("(");
+    		int closeParenIndex = indexOfAfter(inputList, ")", openParenIndex);
+    		//create an arraylist for just the stuff in the parenthesis
+    		ArrayList<String> parenList = new ArrayList<String>(inputList.subList(openParenIndex, closeParenIndex+1));
+    		Fraction newFrac = mdas(parenList);
+    	}   
     	
     	return "";
     }
 
     
-//  public static 
-    public static Fraction mdas (String input) {
+    public static Fraction mdas (ArrayList<String> input) {
+//    	if(input.contains("*")||input.contains("/")) {
+//    		if 
+//    	}
+    	
+    	
+    	
+    	
+    	
     	return null;
     }
-  
-    
-    public static int[] parseFrac(String oprnd) {
-		int whole = 0;
-		int numer = 0;
-		int denom = 1;
-		String[] firstSplit = oprnd.split("_"); 
-		if (oprnd.contains("/")) //if there is a fraction
-		{ 
-			String fraction = firstSplit[firstSplit.length - 1]; //get the last value split
-			String[] secondSplit = fraction.split("/"); //split into numer and denom
-			numer = Integer.parseInt(secondSplit[0]); //assign 0 to numer
-			denom = Integer.parseInt(secondSplit[1]); //assign 1 to denom	
-			if (oprnd.contains("_")) 
-			{ //if there also is a whole
-				whole = Integer.parseInt(firstSplit[0]); //assign first value to whole
-			}
-		} else 
-		{ //if there is no fraction
-			whole = Integer.parseInt(firstSplit[0]); //assign first value to whole
-		}
 
-		int[] returnArr = {whole, numer, denom};
-		return returnArr;
+//helper methods
+    public static int lastIndexOf(String[] arr, String str) {
+    	for(int i = arr.length; i >= 0; i--) {
+    		if (arr[i].equals(str)) {
+    			return i;
+    		}
+    	}
+    	return -1;
     }
-
+    
+    public static int indexOfAfter(ArrayList<String> list, String str, int startIndex) {
+    	for(int i = startIndex; i < list.size(); i++) {
+    		if (list.get(i).equals(str)) {
+    			return i;
+    		}
+    	}
+    	return -1;
+    }
+    
 }
