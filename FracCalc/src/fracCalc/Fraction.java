@@ -33,33 +33,28 @@ public class Fraction {
 		return this.denominator;
 	}
 
-	public void add(Fraction num) {
-		int numer2 = num.numerator() * this.denominator();
-		this.denominator *= num.denominator(); 
-		this.numerator *= num.denominator();
-		this.numerator += numer2;
-	}
-	
-	public void subtract(Fraction num) {
-		int numer2 = num.numerator() * this.denominator();
-		this.denominator *= num.denominator(); 
-		this.numerator *= num.denominator();
-		this.numerator -= numer2;
-	}
-	
-	public void multiply(Fraction num) {
-		this.denominator *= num.denominator();
-		this.numerator *= this.numerator();
-	}
-	
-	public void divide(Fraction num) {
-		this.denominator *= absValue(num.numerator());
-		this.numerator *= num.denominator();
-		if (num.numerator() < 0) {
-			this.numerator *= -1;
+	public void doMath(Fraction num, String str) {
+		if (str.equals("+") || str.equals("-")) {
+			int numer2 = num.numerator() * this.denominator();
+			this.denominator *= num.denominator(); 
+			this.numerator *= num.denominator();
+			if (str.equals("+")) {
+				this.numerator+= numer2;
+			} else {
+				this.numerator-= numer2;
+			}
+		} else if (str.equals("*")) {
+			this.denominator *= num.denominator();
+			this.numerator *= this.numerator();
+		} else if (str.equals("/")) {
+			this.denominator *= absValue(num.numerator());
+			this.numerator *= num.denominator();
+			if (num.numerator() < 0) {
+				this.numerator *= -1;
+			}
 		}
 	}
-		
+	
     public String toString() {
 
     	//if numerator = 0, return 0

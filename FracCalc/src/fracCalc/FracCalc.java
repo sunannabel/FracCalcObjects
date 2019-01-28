@@ -38,8 +38,19 @@ public class FracCalc {
     
     public static Fraction mdas (ArrayList<String> input) {
 //    	if(input.contains("*")||input.contains("/")) {
-//    		if 
+//    		int timesIndex = input.indexOf("*");
+//    		int divideIndex = input.indexOf("/");
+//    		
 //    	}
+    	
+    	for (int i = 0; i < input.size(); i++) { //loop through the operators
+    		if (input.get(i).equals("*") || input.get(i).equals("/")) {
+    			Fraction operand1 = new Fraction(input.get(i=1));
+    			Fraction operand2 = new Fraction(input.get(i+1));
+    			operand1.doMath(operand2, input.get(i));
+    		}
+    	}
+
     	
     	
     	
