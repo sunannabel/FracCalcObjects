@@ -45,7 +45,7 @@ public class Fraction {
 			}
 		} else if (str.equals("*")) {
 			this.denominator *= num.denominator();
-			this.numerator *= this.numerator();
+			this.numerator *= num.numerator();
 		} else if (str.equals("/")) {
 			this.denominator *= absValue(num.numerator());
 			this.numerator *= num.denominator();
